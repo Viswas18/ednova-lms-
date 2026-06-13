@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EdNova LMS AI — Next-generation learning platform with AI-powered tutoring.">
+    <title>EdNova LMS AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; overflow: hidden; }
+
+        /* ═══════════════════════════════════════════════════ */
+        /*           APPLE LIQUID GLASS DESIGN SYSTEM          */
+        /* ═══════════════════════════════════════════════════ */
+
+        /* ─── Living Mesh Background ─── */
+        .mesh-bg {
+            background-color: #f2f4f8;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(90, 200, 250, 0.14) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(100, 210, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(48, 209, 188, 0.10) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 30%, rgba(180, 230, 250, 0.10) 0%, transparent 50%);
+            animation: meshShift 20s ease-in-out infinite alternate;
+        }
+        @keyframes meshShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 50% 50%; }
+        }
+
+        /* ─── Liquid Glass Core ─── */
+        .liquid-glass {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.45) 0%,
+                rgba(255, 255, 255, 0.25) 40%,
+                rgba(255, 255, 255, 0.35) 100%
+            );
+            backdrop-filter: blur(40px) saturate(1.8) brightness(1.05);
+            -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow:
+                0 1px 0 0 rgba(255, 255, 255, 0.7) inset,
+                0 -1px 0 0 rgba(255, 255, 255, 0.2) inset,
+                0 8px 32px -8px rgba(0, 0, 0, 0.08),
+                0 2px 8px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ─── Prismatic Refraction Edge ─── */
+        .liquid-glass-prism {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.5) 0%,
+                rgba(255, 255, 255, 0.2) 100%
+            );
+            backdrop-filter: blur(50px) saturate(2) brightness(1.1);
+            -webkit-backdrop-filter: blur(50px) saturate(2) brightness(1.1);
+            border: 1.5px solid transparent;
+            border-image: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.8),
+                rgba(180, 200, 255, 0.5),
+                rgba(255, 180, 220, 0.4),
+                rgba(180, 255, 220, 0.3),
+                rgba(255, 255, 255, 0.7)
+            ) 1;
+            box-shadow:
+                0 1px 0 0 rgba(255, 255, 255, 0.8) inset,
+                0 8px 40px -8px rgba(0, 0, 0, 0.1),
+                0 2px 12px -2px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ─── Elevated Glass (modals, floating panels) ─── */
+        .liquid-glass-elevated {
+            background: linear-gradient(
+                160deg,
+                rgba(255, 255, 255, 0.6) 0%,
+                rgba(255, 255, 255, 0.35) 50%,
+                rgba(245, 248, 255, 0.5) 100%
+            );
+            backdrop-filter: blur(60px) saturate(2) brightness(1.08);
+            -webkit-backdrop-filter: blur(60px) saturate(2) brightness(1.08);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow:
+                0 2px 0 0 rgba(255, 255, 255, 0.8) inset,
+                0 -1px 0 0 rgba(255, 255, 255, 0.3) inset,
+                0 20px 60px -12px rgba(0, 0, 0, 0.12),
+                0 4px 16px -4px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ─── Subtle Glass (list items, secondary) ─── */
+        .liquid-glass-subtle {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+        }
+
+        /* ─── Rainbow Shimmer (Logo / Accent) ─── */
+        .liquid-shimmer {
+            background: linear-gradient(
+                135deg,
+                #0A84FF, #5AC8FA, #30D1BC, #64D2FF, #34C8E8, #0A84FF
+            );
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerFlow 6s ease-in-out infinite;
+        }
+        @keyframes shimmerFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ─── Prismatic Border Glow ─── */
+        .prism-border {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .prism-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1.5px;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.9),
+                rgba(90,200,250,0.5),
+                rgba(48,209,188,0.4),
+                rgba(100,210,255,0.35),
+                rgba(255,255,255,0.8)
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.6;
+            transition: opacity 0.4s ease;
+        }
+        .prism-border:hover::before { opacity: 1; }
+
+        /* ─── Animations ─── */
+        .fade-up {
+            animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .scale-up {
+            animation: scaleUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .slide-right {
+            animation: slideRight 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .pop-in {
+            animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ─── Buttons ─── */
+        .btn-primary {
+            background: linear-gradient(135deg, #0A84FF 0%, #5AC8FA 100%);
+            color: white;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px -5px rgba(10, 132, 255, 0.35);
+        }
+        .btn-primary:active { transform: translateY(0); }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #374151;
+            transition: all 0.25s ease;
+        }
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+
+        /* ─── Scrollbar ─── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
+
+        /* ─── Course Card ─── */
+        .course-card {
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+        .course-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px -8px rgba(0,0,0,0.12);
+            background: rgba(255,255,255,0.5);
+        }
+        .course-card.active {
+            background: rgba(10, 132, 255, 0.08);
+            border-color: rgba(10, 132, 255, 0.25);
+        }
+        .course-card.active::before { opacity: 1; }
+
+        /* ─── Lesson Item ─── */
+        .lesson-item {
+            transition: all 0.2s ease;
+        }
+        .lesson-item:hover {
+            background: rgba(255,255,255,0.4);
+        }
+        .lesson-item.active {
+            background: rgba(10, 132, 255, 0.06);
+            border-left: 3px solid #0A84FF;
+        }
+
+        /* ─── Quiz Options ─── */
+        .quiz-opt {
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+        .quiz-opt:hover {
+            background: rgba(10, 132, 255, 0.06);
+            border-color: rgba(10, 132, 255, 0.25);
+            transform: translateX(4px);
+        }
+        .quiz-opt.correct {
+            background: rgba(16, 185, 129, 0.12) !important;
+            border-color: #10b981 !important;
+        }
+        .quiz-opt.wrong {
+            background: rgba(239, 68, 68, 0.1) !important;
+            border-color: #ef4444 !important;
+        }
+
+        /* ─── Chat Bubbles ─── */
+        .bubble-user {
+            background: linear-gradient(135deg, #0A84FF, #5AC8FA);
+            color: white;
+            border-radius: 20px 20px 6px 20px;
+        }
+        .bubble-ai {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            color: #374151;
+            border-radius: 20px 20px 20px 6px;
+        }
+
+        /* ─── Typing Dots ─── */
+        .typing-dot {
+            animation: typingPulse 1.4s ease-in-out infinite;
+            background: #9ca3af;
+            border-radius: 50%;
+            width: 7px; height: 7px;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingPulse {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* ─── Toast ─── */
+        .toast-anim {
+            animation: toastSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1), toastFade 0.4s ease 2.6s forwards;
+        }
+        @keyframes toastSlide { from { opacity: 0; transform: translateY(16px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes toastFade { from { opacity: 1; } to { opacity: 0; transform: translateY(-8px); } }
+
+        /* ─── Progress Ring ─── */
+        .progress-ring-track { stroke: rgba(0,0,0,0.06); }
+        .progress-ring-fill {
+            stroke: url(#ringGrad);
+            transition: stroke-dasharray 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ─── Checkmark Pop ─── */
+        .check-pop { animation: checkBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes checkBounce { 0% { transform: scale(0); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
+
+        /* ─── Image Cover ─── */
+        .img-cover { object-fit: cover; width: 100%; height: 100%; }
+
+        /* ─── Text Colors on Glass ─── */
+        .text-glass-primary { color: #1a1a2e; }
+        .text-glass-secondary { color: #4b5563; }
+        .text-glass-muted { color: #9ca3af; }
+
+        /* ─── Input Glass ─── */
+        .input-glass {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #1a1a2e;
+            transition: all 0.25s ease;
+        }
+        .input-glass::placeholder { color: #9ca3af; }
+        .input-glass:focus {
+            outline: none;
+            border-color: rgba(10, 132, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.08);
+        }
+
+        /* ─── Floating Orbs ─── */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            pointer-events: none;
+            animation: orbFloat 12s ease-in-out infinite alternate;
+        }
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.1); }
+            66% { transform: translate(-20px, 15px) scale(0.95); }
+            100% { transform: translate(10px, -10px) scale(1.05); }
+        }
+
+        /* ─── Dark Theme ─── */
+        body.theme-dark.mesh-bg {
+            background-color: #0f172a;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(10, 132, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(90, 200, 250, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(48, 209, 188, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 30%, rgba(100, 210, 255, 0.06) 0%, transparent 50%);
+        }
+        body.theme-dark .liquid-glass,
+        body.theme-dark .liquid-glass-elevated,
+        body.theme-dark .liquid-glass-subtle,
+        body.theme-dark .input-glass {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        body.theme-dark .liquid-glass-elevated {
+            background: linear-gradient(160deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.7) 100%);
+        }
+        body.theme-dark .text-glass-primary { color: #f8fafc; }
+        body.theme-dark .text-glass-secondary { color: #cbd5e1; }
+        body.theme-dark .text-glass-muted { color: #64748b; }
+        body.theme-dark .bubble-ai, body.theme-dark .btn-glass { color: #f8fafc; background: rgba(51, 65, 85, 0.5); }
+        body.theme-dark .bg-white\/60 { background-color: rgba(51, 65, 85, 0.8); }
+        body.theme-dark .text-gray-700 { color: #e2e8f0; }
+        body.theme-dark .course-card:hover { background: rgba(51, 65, 85, 0.6); }
+        body.theme-dark .lesson-item:hover { background: rgba(51, 65, 85, 0.4); }
+        body.theme-dark input.input-glass::placeholder { color: #64748b; }
+        body.theme-dark .bg-gray-100 { background-color: rgba(51, 65, 85, 0.6); color: #cbd5e1; }
+        body.theme-dark .bg-emerald-100 { background-color: rgba(16, 185, 129, 0.2); }
+        body.theme-dark .bg-sky-50 { background-color: rgba(14, 165, 233, 0.2); }
+        body.theme-dark .text-sky-700 { color: #38bdf8; }
+    </style>
+</head>
+<body class="mesh-bg min-h-screen text-glass-primary overflow-hidden">
+
+    <!-- ═══ Floating Orbs ═══ -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="orb w-96 h-96 bg-sky-200" style="top: -10%; left: 10%; animation-duration: 16s;"></div>
+        <div class="orb w-80 h-80 bg-cyan-200" style="top: 60%; right: -5%; animation-duration: 14s; animation-delay: -3s;"></div>
+        <div class="orb w-72 h-72 bg-teal-200" style="bottom: -10%; left: 40%; animation-duration: 18s; animation-delay: -7s;"></div>
+        <div class="orb w-64 h-64 bg-sky-100" style="top: 20%; right: 30%; animation-duration: 20s; animation-delay: -5s;"></div>
+    </div>
+
+    <!-- ═══ Toast Container ═══ -->
+    <div id="toast-box" class="fixed top-5 right-5 z-[100] flex flex-col gap-3"></div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--                   AUTH SCREEN                       -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="auth-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="liquid-glass-elevated rounded-[28px] p-10 w-full max-w-[420px] fade-up relative overflow-hidden">
+            <!-- Decorative top shimmer -->
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
+
+            <!-- Logo -->
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl liquid-glass mb-4">
+                    <span class="text-3xl">🎓</span>
+                </div>
+                <h1 class="text-3xl font-extrabold liquid-shimmer mb-1">EdNova</h1>
+                <p class="text-glass-muted text-sm font-medium tracking-wide">AI-Powered Learning</p>
+            </div>
+
+            <!-- Tab Toggle -->
+            <div class="flex mb-8 liquid-glass-subtle rounded-2xl p-1.5">
+                <button id="login-tab" onclick="App.switchTab('login')"
+                        class="flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-white/60 text-glass-primary shadow-sm">
+                    Sign In
+                </button>
+                <button id="register-tab" onclick="App.switchTab('register')"
+                        class="flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-glass-secondary">
+                    Create Account
+                </button>
+            </div>
+
+            <!-- Login -->
+            <form id="login-form" onsubmit="App.login(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-semibold text-glass-secondary mb-1.5 uppercase tracking-widest">Username</label>
+                    <input id="l-user" type="text" required placeholder="Enter username"
+                           class="w-full px-4 py-3 rounded-xl input-glass text-sm">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-glass-secondary mb-1.5 uppercase tracking-widest">Password</label>
+                    <input id="l-pass" type="password" required placeholder="Enter password"
+                           class="w-full px-4 py-3 rounded-xl input-glass text-sm">
+                </div>
+                <button type="submit" id="login-btn" class="w-full py-3.5 btn-primary rounded-2xl font-semibold text-sm tracking-wide">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Register -->
+            <form id="register-form" onsubmit="App.register(event)" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-[11px] font-semibold text-glass-secondary mb-1.5 uppercase tracking-widest">Username</label>
+                    <input id="r-user" type="text" required placeholder="Choose username"
+                           class="w-full px-4 py-3 rounded-xl input-glass text-sm">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-glass-secondary mb-1.5 uppercase tracking-widest">Email</label>
+                    <input id="r-email" type="email" required placeholder="you@email.com"
+                           class="w-full px-4 py-3 rounded-xl input-glass text-sm">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-glass-secondary mb-1.5 uppercase tracking-widest">Password</label>
+                    <input id="r-pass" type="password" required minlength="6" placeholder="Min 6 characters"
+                           class="w-full px-4 py-3 rounded-xl input-glass text-sm">
+                </div>
+                <button type="submit" id="reg-btn" class="w-full py-3.5 btn-primary rounded-2xl font-semibold text-sm tracking-wide">
+                    Create Account
+                </button>
+            </form>
+
+            <p id="auth-err" class="text-red-500 text-xs text-center mt-4 font-medium hidden"></p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--                   DASHBOARD                         -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="dashboard" class="fixed inset-0 z-40 hidden">
+        <div class="flex h-full">
+
+            <!-- ─── Sidebar ─── -->
+            <aside class="w-[300px] h-full liquid-glass flex flex-col border-r border-white/30 shrink-0">
+                <!-- Header -->
+                <div class="p-5 border-b border-white/20">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl liquid-glass-subtle flex items-center justify-center">
+                                <span class="text-lg">🎓</span>
+                            </div>
+                            <span class="text-lg font-bold liquid-shimmer">EdNova</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="App.toggleTheme()" title="Toggle Theme"
+                                    class="p-2 rounded-xl hover:bg-white/30 transition-all text-glass-secondary hover:text-glass-primary">
+                                <svg id="theme-icon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                            </button>
+                            <button onclick="App.logout()" title="Sign out"
+                                    class="p-2 rounded-xl hover:bg-white/30 transition-all text-glass-secondary hover:text-glass-primary">
+                                <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p id="greeting" class="text-[11px] text-glass-muted mt-2 font-medium">Welcome back</p>
+                </div>
+
+                <!-- Courses -->
+                <div class="flex-1 overflow-y-auto p-4 space-y-2">
+                    <p class="text-[10px] font-bold text-glass-muted uppercase tracking-[0.15em] mb-3 px-1">Courses</p>
+                    <div id="course-list"></div>
+                    <div id="no-courses" class="text-center py-12 hidden">
+                        <span class="text-4xl block mb-3">📚</span>
+                        <p class="text-glass-muted text-sm">No courses yet</p>
+                    </div>
+                </div>
+
+                <!-- Lessons Panel -->
+                <div id="lesson-panel" class="border-t border-white/20 max-h-[42%] overflow-y-auto hidden">
+                    <div class="p-4">
+                        <p class="text-[10px] font-bold text-glass-muted uppercase tracking-[0.15em] mb-3 px-1">Lessons</p>
+                        <div id="lesson-list" class="space-y-1"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ─── Main ─── -->
+            <main class="flex-1 flex flex-col overflow-hidden">
+                <!-- Topbar -->
+                <header class="h-14 liquid-glass-subtle flex items-center px-6 border-b border-white/20 shrink-0">
+                    <div id="breadcrumb" class="text-sm font-medium text-glass-secondary flex-1">
+                        Select a course to begin
+                    </div>
+                    <div id="progress-box" class="flex items-center gap-2.5 hidden">
+                        <svg class="w-8 h-8" viewBox="0 0 36 36" style="transform: rotate(-90deg)">
+                            <circle cx="18" cy="18" r="14" fill="none" class="progress-ring-track" stroke-width="3"/>
+                            <circle id="prog-ring" cx="18" cy="18" r="14" fill="none" class="progress-ring-fill"
+                                    stroke-width="3" stroke-linecap="round" stroke-dasharray="0 88"/>
+                            <defs>
+                                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#0A84FF"/>
+                                    <stop offset="100%" stop-color="#5AC8FA"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span id="prog-text" class="text-xs font-semibold text-glass-secondary">0%</span>
+                    </div>
+                </header>
+
+                <!-- Content -->
+                <div class="flex-1 overflow-y-auto">
+                    <!-- Welcome -->
+                    <div id="welcome" class="flex items-center justify-center h-full p-8">
+                        <div class="text-center fade-up max-w-lg">
+                            <div class="inline-flex items-center justify-center w-24 h-24 rounded-[28px] liquid-glass-elevated mb-8">
+                                <span class="text-5xl">🚀</span>
+                            </div>
+                            <h2 class="text-3xl font-extrabold text-glass-primary mb-3">Welcome to EdNova</h2>
+                            <p class="text-glass-secondary leading-relaxed">
+                                Choose a course from the sidebar to start learning. Our AI tutor will guide you through every concept.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Lesson View -->
+                    <div id="lesson-view" class="hidden p-8 max-w-3xl mx-auto">
+                        <div class="fade-up">
+                            <!-- Lesson Header Image -->
+                            <div id="lesson-hero" class="w-full h-48 rounded-2xl overflow-hidden mb-8 hidden">
+                                <img id="lesson-img" class="img-cover" alt="Lesson thumbnail" src="">
+                            </div>
+
+                            <div class="flex items-center gap-3 mb-2">
+                                <span id="l-course-tag" class="text-[11px] font-semibold uppercase tracking-widest btn-glass px-3 py-1 rounded-full"></span>
+                                <span id="l-order-tag" class="text-[11px] text-glass-muted font-medium"></span>
+                            </div>
+                            <h1 id="l-title" class="text-3xl font-extrabold text-glass-primary mb-8"></h1>
+
+                            <!-- Content -->
+                            <article id="l-body" class="text-[15px] leading-relaxed text-glass-secondary space-y-4"></article>
+
+                            <!-- Actions -->
+                            <div class="mt-10 flex items-center gap-4 flex-wrap">
+                                <button id="done-btn" onclick="App.completeLesson()"
+                                        class="flex items-center gap-2.5 px-6 py-3 rounded-2xl btn-primary font-semibold text-sm transition-all">
+                                    <svg id="ic-undone" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke-width="2"/></svg>
+                                    <svg id="ic-done" class="w-5 h-5 hidden check-pop" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="#10b981"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+                                    <span id="done-txt">Mark Complete</span>
+                                </button>
+                                <button id="quiz-trigger" onclick="App.openQuiz()"
+                                        class="flex items-center gap-2 px-6 py-3 rounded-2xl btn-glass font-semibold text-sm hidden">
+                                    <span>🧠</span> Take Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--                   QUIZ MODAL                        -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div id="quiz-modal" class="fixed inset-0 z-[80] hidden">
+        <div class="absolute inset-0 bg-black/20 backdrop-blur-md" onclick="App.closeQuiz()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="liquid-glass-elevated rounded-[28px] p-8 w-full max-w-lg scale-up relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
+                <button onclick="App.closeQuiz()" class="absolute top-4 right-4 p-2 rounded-xl hover:bg-black/5 text-glass-secondary transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-11 h-11 rounded-2xl liquid-glass flex items-center justify-center"><span class="text-xl">🧠</span></div>
+                    <div>
+                        <h3 class="font-bold text-glass-primary">Quiz Time</h3>
+                        <p id="q-counter" class="text-xs text-glass-muted">Question 1 of 1</p>
+                    </div>
+                </div>
+                <p id="q-text" class="text-lg text-glass-primary font-semibold mb-6 leading-relaxed"></p>
+                <div id="q-opts" class="space-y-3"></div>
+                <div id="q-result" class="mt-6 hidden">
+                    <div id="q-result-inner" class="flex items-center gap-3 p-4 rounded-2xl liquid-glass-subtle"></div>
+                    <button id="q-next" onclick="App.nextQ()" class="w-full mt-4 py-3 btn-primary rounded-2xl font-semibold text-sm hidden">Next Question →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--                   AI CHAT                           -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <button id="chat-fab" onclick="App.toggleChat()"
+            class="fixed bottom-5 right-5 z-[70] w-14 h-14 rounded-2xl btn-primary flex items-center justify-center shadow-lg shadow-sky-400/20 hover:shadow-sky-400/40 transition-all hover:scale-105 hidden">
+        <svg id="fab-open" class="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+        </svg>
+        <svg id="fab-close" class="w-6 h-6 hidden" fill="none" stroke="white" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    </button>
+
+    <div id="chat-panel" class="fixed bottom-24 right-5 z-[70] w-[380px] h-[480px] liquid-glass-elevated rounded-[24px] shadow-2xl flex flex-col overflow-hidden hidden">
+        <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
+        <!-- Header -->
+        <div class="p-5 border-b border-white/20 shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl btn-primary flex items-center justify-center"><span class="text-lg">🤖</span></div>
+                <div>
+                    <h3 class="font-bold text-glass-primary text-sm">AI Tutor</h3>
+                    <p class="text-xs text-emerald-500 flex items-center gap-1.5 font-medium">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block" style="animation: typingPulse 2s infinite;"></span>
+                        Ready to help
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Messages -->
+        <div id="chat-msgs" class="flex-1 overflow-y-auto p-4 space-y-3">
+            <div class="bubble-ai p-4 max-w-[85%] fade-up">
+                <p class="text-sm">👋 Hi! I'm your AI tutor. Select a lesson and ask me anything about the material!</p>
+            </div>
+        </div>
+        <!-- Input -->
+        <div class="p-4 border-t border-white/20 shrink-0">
+            <form onsubmit="App.sendChat(event)" class="flex gap-2">
+                <input id="chat-in" type="text" placeholder="Ask about this lesson..."
+                       class="flex-1 px-4 py-3 rounded-2xl input-glass text-sm">
+                <button type="submit" class="px-4 py-3 btn-primary rounded-2xl transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--                   APP LOGIC                         -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <script>
+    const API = '/api';
+
+    const App = {
+        token: localStorage.getItem('en_access'),
+        refresh: localStorage.getItem('en_refresh'),
+        user: localStorage.getItem('en_user'),
+        courses: [], lessons: [], curCourse: null, curLesson: null,
+        quizzes: [], qi: 0, chatOn: false,
+
+        init() {
+            const savedTheme = localStorage.getItem('en_theme') || 'light';
+            if (savedTheme === 'dark') this.setTheme('dark');
+            if (this.token) this.showDash();
+        },
+
+        setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('theme-dark');
+                const icon = document.getElementById('theme-icon');
+                if(icon) icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+            } else {
+                document.body.classList.remove('theme-dark');
+                const icon = document.getElementById('theme-icon');
+                if(icon) icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
+            }
+            localStorage.setItem('en_theme', theme);
+        },
+
+        toggleTheme() {
+            const isDark = document.body.classList.contains('theme-dark');
+            this.setTheme(isDark ? 'light' : 'dark');
+        },
+
+        // ─── Fetch Wrapper ───
+        async api(path, opts = {}) {
+            const h = { 'Content-Type': 'application/json', ...opts.headers };
+            if (this.token) h['Authorization'] = `Bearer ${this.token}`;
+            let res = await fetch(`${API}${path}`, { ...opts, headers: h });
+            if (res.status === 401 && this.refresh) {
+                if (await this.doRefresh()) {
+                    h['Authorization'] = `Bearer ${this.token}`;
+                    return fetch(`${API}${path}`, { ...opts, headers: h });
+                }
+                this.logout();
+            }
+            return res;
+        },
+
+        async doRefresh() {
+            try {
+                const r = await fetch(`${API}/token/refresh/`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ refresh: this.refresh })
+                });
+                if (r.ok) {
+                    const d = await r.json();
+                    this.token = d.access;
+                    if (d.refresh) this.refresh = d.refresh;
+                    localStorage.setItem('en_access', this.token);
+                    localStorage.setItem('en_refresh', this.refresh);
+                    return true;
+                }
+            } catch (e) {}
+            return false;
+        },
+
+        // ─── Auth ───
+        switchTab(t) {
+            const $ = id => document.getElementById(id);
+            $('auth-err').classList.add('hidden');
+            if (t === 'login') {
+                $('login-tab').className = 'flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-white/60 text-glass-primary shadow-sm';
+                $('register-tab').className = 'flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-glass-secondary';
+                $('login-form').classList.remove('hidden');
+                $('register-form').classList.add('hidden');
+            } else {
+                $('register-tab').className = 'flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-white/60 text-glass-primary shadow-sm';
+                $('login-tab').className = 'flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-glass-secondary';
+                $('register-form').classList.remove('hidden');
+                $('login-form').classList.add('hidden');
+            }
+        },
+
+        async login(e) {
+            e.preventDefault();
+            const btn = document.getElementById('login-btn');
+            btn.textContent = 'Signing in...'; btn.disabled = true;
+            try {
+                const r = await fetch(`${API}/token/`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: document.getElementById('l-user').value, password: document.getElementById('l-pass').value })
+                });
+                const d = await r.json();
+                if (r.ok) {
+                    this.token = d.access; this.refresh = d.refresh;
+                    this.user = document.getElementById('l-user').value;
+                    localStorage.setItem('en_access', this.token);
+                    localStorage.setItem('en_refresh', this.refresh);
+                    localStorage.setItem('en_user', this.user);
+                    this.showDash();
+                } else {
+                    this.authErr(d.detail || 'Invalid credentials');
+                }
+            } catch (_) { this.authErr('Connection error'); }
+            btn.textContent = 'Sign In'; btn.disabled = false;
+        },
+
+        async register(e) {
+            e.preventDefault();
+            const btn = document.getElementById('reg-btn');
+            btn.textContent = 'Creating...'; btn.disabled = true;
+            try {
+                const r = await fetch(`${API}/register/`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: document.getElementById('r-user').value,
+                        email: document.getElementById('r-email').value,
+                        password: document.getElementById('r-pass').value
+                    })
+                });
+                const d = await r.json();
+                if (r.ok) {
+                    this.toast('Account created! Sign in now.', 'success');
+                    this.switchTab('login');
+                    document.getElementById('l-user').value = document.getElementById('r-user').value;
+                } else {
+                    this.authErr(Object.values(d).flat().join(' '));
+                }
+            } catch (_) { this.authErr('Connection error'); }
+            btn.textContent = 'Create Account'; btn.disabled = false;
+        },
+
+        authErr(m) { const e = document.getElementById('auth-err'); e.textContent = m; e.classList.remove('hidden'); },
+        logout() {
+            this.token = this.refresh = this.user = null;
+            ['en_access','en_refresh','en_user'].forEach(k => localStorage.removeItem(k));
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+            document.getElementById('chat-fab').classList.add('hidden');
+            document.getElementById('chat-panel').classList.add('hidden');
+        },
+
+        // ─── Dashboard ───
+        async showDash() {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            document.getElementById('chat-fab').classList.remove('hidden');
+            document.getElementById('greeting').textContent = `Welcome back, ${this.user || 'Learner'}`;
+            await this.loadCourses();
+        },
+
+        async loadCourses() {
+            try {
+                const r = await this.api('/courses/');
+                if (r.ok) { this.courses = await r.json(); this.renderCourses(); }
+            } catch (e) { console.error(e); }
+        },
+
+        renderCourses() {
+            const el = document.getElementById('course-list');
+            const none = document.getElementById('no-courses');
+            if (!this.courses.length) { el.innerHTML = ''; none.classList.remove('hidden'); return; }
+            none.classList.add('hidden');
+            el.innerHTML = this.courses.map((c, i) => `
+                <button onclick="App.pickCourse(${c.id})" id="c-${c.id}"
+                    class="course-card prism-border w-full text-left p-3.5 rounded-[20px] liquid-glass-subtle flex items-center gap-3.5 mb-2 fade-up"
+                    style="animation-delay:${i * 60}ms">
+                    ${c.thumbnail_url
+                        ? `<div class="w-12 h-12 rounded-2xl overflow-hidden shrink-0 shadow-sm"><img src="${c.thumbnail_url}" class="img-cover" alt="${this.esc(c.title)}"></div>`
+                        : `<div class="w-12 h-12 rounded-2xl liquid-glass flex items-center justify-center shrink-0 text-2xl">${c.icon_emoji || '📚'}</div>`
+                    }
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-semibold text-glass-primary text-sm truncate">${this.esc(c.title)}</h4>
+                        <p class="text-[11px] text-glass-muted mt-0.5">${c.lesson_count} lesson${c.lesson_count !== 1 ? 's' : ''}</p>
+                    </div>
+                </button>
+            `).join('');
+        },
+
+        async pickCourse(id) {
+            this.curCourse = this.courses.find(c => c.id === id);
+            this.curLesson = null;
+            document.querySelectorAll('.course-card').forEach(e => e.classList.remove('active'));
+            document.getElementById(`c-${id}`)?.classList.add('active');
+            try {
+                const r = await this.api(`/lessons/?course_id=${id}`);
+                if (r.ok) { this.lessons = await r.json(); this.renderLessons(); }
+            } catch (e) { console.error(e); }
+        },
+
+        renderLessons() {
+            const panel = document.getElementById('lesson-panel');
+            const el = document.getElementById('lesson-list');
+            panel.classList.remove('hidden');
+            if (!this.lessons.length) { el.innerHTML = '<p class="text-glass-muted text-xs px-1">No lessons yet</p>'; return; }
+            el.innerHTML = this.lessons.map((l, i) => `
+                <button onclick="App.pickLesson(${l.id})" id="ls-${l.id}"
+                    class="lesson-item w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-all">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs font-bold
+                                ${l.is_completed ? 'bg-emerald-100 text-emerald-600' : 'bg-gray-100 text-glass-muted'}">
+                        ${l.is_completed ? '✓' : (i + 1)}
+                    </div>
+                    <span class="text-sm text-glass-primary truncate font-medium">${this.esc(l.title)}</span>
+                </button>
+            `).join('');
+            this.updateProgress();
+        },
+
+        pickLesson(id) {
+            const l = this.lessons.find(x => x.id === id);
+            if (!l) return;
+            this.curLesson = l;
+            document.querySelectorAll('.lesson-item').forEach(e => e.classList.remove('active'));
+            document.getElementById(`ls-${id}`)?.classList.add('active');
+            document.getElementById('welcome').classList.add('hidden');
+            const view = document.getElementById('lesson-view');
+            view.classList.remove('hidden');
+
+            // Re-trigger animation
+            const inner = view.querySelector('.fade-up');
+            inner.style.animation = 'none'; inner.offsetHeight; inner.style.animation = '';
+
+            // Hero image
+            const hero = document.getElementById('lesson-hero');
+            const img = document.getElementById('lesson-img');
+            if (l.thumbnail_url) { img.src = l.thumbnail_url; hero.classList.remove('hidden'); }
+            else { hero.classList.add('hidden'); }
+
+            document.getElementById('l-title').textContent = l.title;
+            document.getElementById('l-course-tag').textContent = this.curCourse.title;
+            document.getElementById('l-order-tag').textContent = `Lesson ${l.order}`;
+            document.getElementById('l-body').innerHTML = this.md(l.content);
+            document.getElementById('breadcrumb').innerHTML =
+                `<span class="text-glass-muted">${this.esc(this.curCourse.title)}</span>
+                 <span class="text-glass-muted mx-2">›</span>
+                 <span class="text-glass-primary font-semibold">${this.esc(l.title)}</span>`;
+            this.setDoneUI(l.is_completed);
+            document.getElementById('quiz-trigger').classList.toggle('hidden', !l.has_quiz);
+        },
+
+        setDoneUI(done) {
+            document.getElementById('ic-undone').classList.toggle('hidden', done);
+            document.getElementById('ic-done').classList.toggle('hidden', !done);
+            document.getElementById('done-txt').textContent = done ? 'Completed ✓' : 'Mark Complete';
+            const btn = document.getElementById('done-btn');
+            btn.style.background = done ? 'linear-gradient(135deg, #059669, #10b981)' : '';
+        },
+
+        async completeLesson() {
+            if (!this.curLesson) return;
+            try {
+                const r = await this.api(`/lessons/${this.curLesson.id}/complete/`, { method: 'POST' });
+                if (r.ok) {
+                    this.curLesson.is_completed = true;
+                    this.setDoneUI(true);
+                    this.toast('Lesson completed! 🎉', 'success');
+                    const i = this.lessons.findIndex(l => l.id === this.curLesson.id);
+                    if (i !== -1) this.lessons[i].is_completed = true;
+                    this.renderLessons();
+                    document.getElementById(`ls-${this.curLesson.id}`)?.classList.add('active');
+                }
+            } catch (_) { this.toast('Failed to complete', 'error'); }
+        },
+
+        updateProgress() {
+            const done = this.lessons.filter(l => l.is_completed).length;
+            const total = this.lessons.length;
+            const pct = total ? Math.round((done / total) * 100) : 0;
+            document.getElementById('progress-box').classList.remove('hidden');
+            document.getElementById('prog-text').textContent = `${pct}%`;
+            const circ = 2 * Math.PI * 14; // r=14
+            document.getElementById('prog-ring').setAttribute('stroke-dasharray', `${(pct / 100) * circ} ${circ}`);
+        },
+
+        // ─── Quiz ───
+        async openQuiz() {
+            if (!this.curLesson) return;
+            try {
+                const r = await this.api(`/lessons/${this.curLesson.id}/quiz/`);
+                if (r.ok) {
+                    this.quizzes = await r.json(); this.qi = 0;
+                    this.renderQ();
+                    document.getElementById('quiz-modal').classList.remove('hidden');
+                } else { this.toast('No quiz available', 'info'); }
+            } catch (_) { this.toast('Failed to load quiz', 'error'); }
+        },
+
+        renderQ() {
+            const q = this.quizzes[this.qi];
+            document.getElementById('q-counter').textContent = `Question ${this.qi + 1} of ${this.quizzes.length}`;
+            document.getElementById('q-text').textContent = q.question;
+            document.getElementById('q-result').classList.add('hidden');
+            document.getElementById('q-opts').innerHTML = [
+                { k: 'A', t: q.option_a }, { k: 'B', t: q.option_b },
+                { k: 'C', t: q.option_c }, { k: 'D', t: q.option_d }
+            ].map(o => `
+                <button onclick="App.submitQ('${o.k}',${q.id},this)"
+                    class="quiz-opt w-full text-left p-4 rounded-2xl liquid-glass-subtle flex items-center gap-4">
+                    <span class="w-9 h-9 rounded-xl liquid-glass flex items-center justify-center text-sm font-bold text-glass-secondary">${o.k}</span>
+                    <span class="text-sm text-glass-primary font-medium">${this.esc(o.t)}</span>
+                </button>
+            `).join('');
+        },
+
+        async submitQ(opt, qid, el) {
+            document.querySelectorAll('.quiz-opt').forEach(b => { b.disabled = true; b.style.pointerEvents = 'none'; });
+            try {
+                const r = await this.api(`/quizzes/${qid}/submit/`, {
+                    method: 'POST', body: JSON.stringify({ selected_option: opt })
+                });
+                const d = await r.json();
+                el.classList.add(d.correct ? 'correct' : 'wrong');
+                if (!d.correct && d.correct_option) {
+                    const btns = document.querySelectorAll('.quiz-opt');
+                    const idx = ['A','B','C','D'].indexOf(d.correct_option);
+                    if (btns[idx]) btns[idx].classList.add('correct');
+                }
+                const res = document.getElementById('q-result');
+                res.classList.remove('hidden');
+                document.getElementById('q-result-inner').innerHTML = d.correct
+                    ? '<span class="text-2xl">🎉</span><span class="text-emerald-600 font-semibold">Correct! Well done!</span>'
+                    : '<span class="text-2xl">😅</span><span class="text-red-500 font-semibold">Not quite. Review and try again!</span>';
+                if (this.qi < this.quizzes.length - 1) document.getElementById('q-next').classList.remove('hidden');
+            } catch (_) { this.toast('Submit failed', 'error'); }
+        },
+
+        nextQ() { this.qi++; this.renderQ(); },
+        closeQuiz() { document.getElementById('quiz-modal').classList.add('hidden'); },
+
+        // ─── AI Chat ───
+        toggleChat() {
+            this.chatOn = !this.chatOn;
+            document.getElementById('chat-panel').classList.toggle('hidden', !this.chatOn);
+            document.getElementById('fab-open').classList.toggle('hidden', this.chatOn);
+            document.getElementById('fab-close').classList.toggle('hidden', !this.chatOn);
+        },
+
+        async sendChat(e) {
+            e.preventDefault();
+            const inp = document.getElementById('chat-in');
+            const msg = inp.value.trim();
+            if (!msg) return;
+            if (!this.curLesson) { this.toast('Select a lesson first', 'info'); return; }
+            inp.value = '';
+            this.addBubble(msg, 'user');
+            this.showTyping();
+            try {
+                const r = await this.api('/ai-tutor/', {
+                    method: 'POST',
+                    body: JSON.stringify({ lesson_id: this.curLesson.id, message: msg })
+                });
+                this.hideTyping();
+                const d = await r.json();
+                this.addBubble(d.reply || 'Sorry, no response.', 'ai');
+            } catch (_) {
+                this.hideTyping();
+                this.addBubble('⚠️ Connection error. Try again.', 'ai');
+            }
+        },
+
+        addBubble(text, type) {
+            const c = document.getElementById('chat-msgs');
+            const b = document.createElement('div');
+            b.className = `${type === 'user' ? 'bubble-user ml-auto' : 'bubble-ai'} p-4 max-w-[85%] fade-up`;
+            b.innerHTML = `<p class="text-sm">${type === 'ai' ? this.md(text) : this.esc(text)}</p>`;
+            c.appendChild(b);
+            c.scrollTop = c.scrollHeight;
+        },
+
+        showTyping() {
+            const c = document.getElementById('chat-msgs');
+            const d = document.createElement('div');
+            d.id = 'typing'; d.className = 'bubble-ai p-4 max-w-[85%] fade-up';
+            d.innerHTML = '<div class="flex gap-1.5"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            c.appendChild(d); c.scrollTop = c.scrollHeight;
+        },
+        hideTyping() { document.getElementById('typing')?.remove(); },
+
+        // ─── Helpers ───
+        md(t) {
+            if (!t) return '';
+            return t
+                .replace(/```(\w*)\n?([\s\S]*?)```/g, '<pre class="bg-gray-900/5 rounded-xl p-4 text-sm overflow-x-auto my-4 font-mono text-gray-700"><code>$2</code></pre>')
+                .replace(/`([^`]+)`/g, '<code class="bg-sky-50 text-sky-700 px-1.5 py-0.5 rounded-md text-[13px] font-medium">$1</code>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong class="text-glass-primary font-semibold">$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                .replace(/^### (.+)$/gm, '<h3 class="text-base font-bold text-glass-primary mt-6 mb-2">$1</h3>')
+                .replace(/^## (.+)$/gm, '<h2 class="text-lg font-bold text-glass-primary mt-8 mb-3">$1</h2>')
+                .replace(/^# (.+)$/gm, '<h1 class="text-xl font-extrabold text-glass-primary mt-8 mb-3">$1</h1>')
+                .replace(/^\|(.+)\|$/gm, (m) => {
+                    const cells = m.split('|').filter(c => c.trim()).map(c => c.trim());
+                    if (cells.every(c => /^[-:]+$/.test(c))) return '';
+                    return '<tr>' + cells.map(c => `<td class="border border-gray-200/60 px-3 py-2 text-sm">${c}</td>`).join('') + '</tr>';
+                })
+                .replace(/(<tr>[\s\S]*?<\/tr>)/g, '<div class="overflow-x-auto my-4"><table class="w-full liquid-glass-subtle rounded-xl overflow-hidden">$1</table></div>')
+                .replace(/^- (.+)$/gm, '<li class="ml-5 text-glass-secondary list-disc">$1</li>')
+                .replace(/^\d+\. (.+)$/gm, '<li class="ml-5 text-glass-secondary list-decimal">$1</li>')
+                .replace(/\n{2,}/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+        },
+
+        esc(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; },
+
+        toast(msg, type = 'info') {
+            const c = document.getElementById('toast-box');
+            const colors = { success: 'border-emerald-300 bg-emerald-50', error: 'border-red-300 bg-red-50', info: 'border-sky-300 bg-sky-50' };
+            const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+            const textColors = { success: 'text-emerald-800', error: 'text-red-800', info: 'text-sky-800' };
+            const t = document.createElement('div');
+            t.className = `toast-anim liquid-glass-elevated px-5 py-3 rounded-2xl border ${colors[type]} flex items-center gap-3 shadow-lg`;
+            t.innerHTML = `<span>${icons[type]}</span><span class="text-sm font-medium ${textColors[type]}">${msg}</span>`;
+            c.appendChild(t);
+            setTimeout(() => t.remove(), 3000);
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => App.init());
+    </script>
+</body>
+</html>

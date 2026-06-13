@@ -1,0 +1,1 @@
+# EdNova LMS Django Project
